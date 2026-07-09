@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}
+Placement Drives
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="fw-bold mb-4">
+        <i class="bi bi-briefcase-fill"></i>
+        Available Placement Drives
+    </h2>
+
+    {% if companies %}
+
+    <form method="GET" class="row mb-4">
+
+    <div class="col-md-5">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search Company or Role"
+            value="{{ request.args.get('search','') }}">
+
+    </div>
+
+    <div class="col-md-4">
+
+        <input
+            type="text"
+            name="location"
+            class="form-control"
+            placeholder="Location"
+            value="{{ request.args.get('location','') }}">
+
+    </div>
+
+    <div class="col-md-3">
+
+        <button
+            class="btn btn-primary w-100">
+
+            <i class="bi bi-search"></i>
+
+            Search
+
+        </button>
+        <a href="/placement-drives"
+   class="btn btn-secondary w-100 mt-2">
+
+    <i class="bi bi-arrow-clockwise"></i>
+
+    Clear Filters
+
+</a>
+
+    </div>
+
+</form>
+
+    <div class="row">
+
+        {% for company in companies %}
+
+        <div class="text-center mb-3">
+
+        {% if company.logo %}
+
+        <img
+        src="{{ url_for('static', filename='company_logos/' + company.logo) }}"
+        style="height:80px; object-fit:contain;">
+
+        {% else %}
+
+        <i class="bi bi-building display-4 text-primary"></i>
+
+        {% endif %}
+
+        </div>
+
+        <h4 class="text-primary text-center">
+
+        {{ company.company_name }}
+
+        </h4>
+
+                    <hr>
+
+                    <p>
+                        <i class="bi bi-person-workspace text-primary"></i>
+                        <strong>Role:</strong>
+                        {{ company.role }}
+                    </p>
+
+                    <p>
+                        <i class="bi bi-currency-rupee text-success"></i>
+                        <strong>Package:</strong>
+                        {{ company.package }}
+                    </p>
+
+                    <p>
+                        <i class="bi bi-geo-alt-fill text-danger"></i>
+                        <strong>Location:</strong>
+                        {{ company.location }}
+                    </p>
+
+                    <p>
+                        <i class="bi bi-building text-info"></i>
+                        <strong>Departments:</strong><br>
+                        {{ company.eligible_department }}
+                    </p>
+
+                    <p>
+                        <i class="bi bi-mortarboard-fill text-warning"></i>
+                        <strong>Minimum CGPA:</strong>
+                        {{ company.minimum_cgpa }}
+                    </p>
+
+                    <p>
+                        <i class="bi bi-calendar-event-fill text-secondary"></i>
+                        <strong>Last Date:</strong>
+                        {{ company.last_date }}
+                    </p>
+
+                    <a href="{{ url_for('company_details', company_id=company.id) }}"
+                    class="btn btn-primary w-100">
+
+                        <i class="bi bi-eye-fill"></i>
+
+                        View Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning text-center shadow-sm rounded-3">
+
+        <h4>
+            <i class="bi bi-exclamation-circle-fill"></i>
+            No Eligible Placement Drives
+        </h4>
+
+        <p class="mb-0">
+            You are currently not eligible for any active placement drives.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

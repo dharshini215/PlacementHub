@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  placementhub:
+    build: .
+    container_name: placementhub-container
+
+    ports:
+      - "5000:5000"
+
+    volumes:
+      - .:/app
+
+    restart: unless-stopped
+
+    environment:
+      FLASK_ENV: development

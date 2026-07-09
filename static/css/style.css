@@ -1,0 +1,380 @@
+/* ==========================
+   General Styling
+========================== */
+
+body{
+    background: linear-gradient(to right, #dbeafe, #f8fbff);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================
+   Home Page
+========================== */
+
+.display-4{
+    color:#0d6efd;
+}
+
+footer{
+    margin-top:0;
+}
+
+/* ==========================
+   Cards
+========================== */
+
+.card{
+    border:none;
+    border-radius:20px;
+    transition:0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* ==========================
+   Form Fields
+========================== */
+
+.form-control{
+    height:50px;
+    border-radius:10px;
+}
+
+.input-group-text{
+    background:#ffffff;
+    border-radius:10px 0 0 10px;
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.btn{
+    height:50px;
+    font-size:17px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.02);
+}
+
+/* ==========================
+   Links
+========================== */
+
+a{
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:none;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width:768px){
+
+    .card{
+        margin:20px;
+    }
+
+}
+
+/* ==========================
+   Navbar
+========================== */
+
+.navbar{
+    background:#0d6efd !important;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.navbar-brand{
+    font-size:24px;
+    font-weight:bold;
+    color:white !important;
+}
+
+.nav-link{
+
+    color:white !important;
+
+    margin-left:20px;
+
+    font-size:17px;
+
+    font-weight:500;
+
+    position:relative;
+
+    transition:0.3s;
+
+}
+
+/* Underline Animation */
+
+.nav-link::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-5px;
+
+    width:0%;
+
+    height:3px;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    transition:0.3s ease;
+
+}
+
+/* Hover */
+
+.nav-link:hover::after{
+
+    width:100%;
+
+}
+
+/* Active Page */
+
+.nav-link.active::after{
+
+    width:100%;
+
+}
+
+.nav-link:hover{
+
+    color:#ffffff !important;
+
+}
+/* Validation Styles */
+
+.is-valid{
+    border:1px solid #ced4da !important;
+    box-shadow:none !important;
+}
+
+.is-invalid{
+    border:2px solid #dc3545 !important;
+    box-shadow:none !important;
+}
+.dashboard-card{
+
+    transition:0.3s;
+
+    cursor:pointer;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.btn{
+
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    border-radius:10px;
+
+}
+.form-control[type="file"]{
+
+    height:48px;
+
+    padding:10px;
+
+    font-size:15px;
+
+}
+/* Resume Upload */
+
+.upload-box{
+
+    max-width:650px;
+
+    margin:auto;
+
+    border:3px dashed #0d6efd;
+
+    border-radius:20px;
+
+    background:#ffffff;
+    padding:50px;
+
+     transition:0.3s ease;
+
+     box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+}
+
+.upload-box:hover{
+
+    background:#eef6ff;
+
+    border-color:#0b5ed7;
+    transform:translateY(-5px);
+
+    box-shadow:0 20px 50px rgba(13,110,253,.15);
+
+}
+
+.upload-box > i{
+    font-size:80px;
+}
+
+.upload-box h3{
+
+    font-weight:600;
+
+}
+
+.upload-box p{
+
+    margin-bottom:0;
+
+}
+
+#file-name{
+
+    font-size:18px;
+
+    color:#198754;
+
+}
+
+.drag-active{
+
+    background:#eaf4ff;
+
+    border-color:#198754;
+
+    transform:scale(1.02);
+
+}
+.drag-active{
+
+    background:#eef6ff;
+
+    border-color:#198754;
+
+    transform:scale(1.02);
+
+}
+
+#file-name{
+
+    min-height:80px;
+
+}
+.card{
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+
+}
+
+.action-btn{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+}
+/* Navbar Center Heading */
+
+.navbar-text {
+
+    letter-spacing: 1px;
+
+    font-weight: 700;
+
+    color: white !important;
+
+    user-select: none;
+
+}
+
+.navbar-nav .nav-link {
+
+    font-size: 18px;
+
+    margin-left: 18px;
+
+}
+
+/* Navbar */
+
+.navbar-brand{
+
+    font-size:32px;
+    font-weight:700;
+
+}
+
+.portal-title{
+
+    font-size:26px;
+
+    font-weight:700;
+
+    color:white !important;
+
+    letter-spacing:1px;
+
+}
+
+.navbar-nav .nav-link{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin-left:15px;
+
+}
+
+.table-action-btn{
+
+    min-width:110px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    height: 35px;
+
+}

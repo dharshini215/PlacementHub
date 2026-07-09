@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block title %}
+Register | PlacementHub
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<div class="row justify-content-center">
+
+<div class="col-md-7">
+
+<div class="card shadow-lg p-4 mt-5">
+
+<div class="text-center">
+
+<i class="bi bi-person-plus-fill text-primary display-3"></i>
+
+<h2 class="text-primary fw-bold">
+
+Student Registration
+
+</h2>
+
+<p class="text-muted">
+
+Create your PlacementHub account
+
+</p>
+
+</div>
+
+<form method="POST" action="/register">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">Full Name</label>
+
+    <input
+    type="text"
+    class="form-control"
+    id="full_name"
+    name="full_name"
+    value="{{ form.get('full_name', '') if form else '' }}"
+    placeholder="Enter Full Name"
+    required>
+    <small id="nameError" class="text-danger"></small>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">Register Number</label>
+
+    <input
+    type="text"
+    class="form-control"
+    id="register_number"
+    name="register_number"
+    value="{{ form.get('register_number', '') if form else '' }}"
+    placeholder="Ex: 251AT014 or 24UGCCA00128"
+    required>
+
+    <small id="registerError" class="text-danger"></small>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">Email Address</label>
+
+    <input
+    type="email"
+    class="form-control"
+    id="email"
+    name="email"
+    value="{{ form.get('email', '') if form else '' }}"
+    placeholder="Enter Email Address"
+    required>
+
+    <small id="emailError" class="text-danger"></small>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">Phone Number</label>
+
+    <input
+    type="tel"
+    class="form-control"
+    id="phone"
+    name="phone"
+    value="{{ form.get('phone', '') if form else '' }}"
+    placeholder="Enter 10-digit Mobile Number"
+    maxlength="10"
+    required>
+
+    <small id="phoneError" class="text-danger"></small>
+
+</div>
+
+<!-- Department -->
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">Department</label>
+
+    <select class="form-select" name="department" required>
+
+<option value="">Select Department</option>
+
+<option value="BCA"
+{% if form and form.get('department')=="BCA" %}selected{% endif %}>
+BCA
+</option>
+
+<option value="B.Sc Computer Science"
+{% if form and form.get('department')=="B.Sc Computer Science" %}selected{% endif %}>
+B.Sc Computer Science
+</option>
+
+<option value="B.Sc Computer Science with Cognitive Systems"
+{% if form and form.get('department')=="B.Sc Computer Science with Cognitive Systems" %}selected{% endif %}>
+B.Sc Computer Science with Cognitive Systems
+</option>
+
+<option value="B.Sc Information Technology"
+{% if form and form.get('department')=="B.Sc Information Technology" %}selected{% endif %}>
+B.Sc Information Technology
+</option>
+
+<option value="B.Sc Artificial Intelligence & Machine Learning"
+{% if form and form.get('department')=="B.Sc Artificial Intelligence & Machine Learning" %}selected{% endif %}>
+B.Sc Artificial Intelligence & Machine Learning
+</option>
+
+<option value="B.Sc Data Science"
+{% if form and form.get('department')=="B.Sc Data Science" %}selected{% endif %}>
+B.Sc Data Science
+</option>
+
+<option value="B.Com"
+{% if form and form.get('department')=="B.Com" %}selected{% endif %}>
+B.Com
+</option>
+
+<option value="B.Com Computer Applications"
+{% if form and form.get('department')=="B.Com Computer Applications" %}selected{% endif %}>
+B.Com Computer Applications
+</option>
+
+<option value="B.Com Professional Accounting"
+{% if form and form.get('department')=="B.Com Professional Accounting" %}selected{% endif %}>
+B.Com Professional Accounting
+</option>
+
+<option value="B.Com Banking & Insurance"
+{% if form and form.get('department')=="B.Com Banking & Insurance" %}selected{% endif %}>
+B.Com Banking & Insurance
+</option>
+
+<option value="BBA"
+{% if form and form.get('department')=="BBA" %}selected{% endif %}>
+BBA
+</option>
+
+<option value="BBA Computer Applications"
+{% if form and form.get('department')=="BBA Computer Applications" %}selected{% endif %}>
+BBA Computer Applications
+</option>
+
+<option value="BA English"
+{% if form and form.get('department')=="BA English" %}selected{% endif %}>
+BA English
+</option>
+
+<option value="BA Tamil"
+{% if form and form.get('department')=="BA Tamil" %}selected{% endif %}>
+BA Tamil
+</option>
+
+<option value="BA Economics"
+{% if form and form.get('department')=="BA Economics" %}selected{% endif %}>
+BA Economics
+</option>
+
+<option value="B.Sc Mathematics"
+{% if form and form.get('department')=="B.Sc Mathematics" %}selected{% endif %}>
+B.Sc Mathematics
+</option>
+
+<option value="B.Sc Physics"
+{% if form and form.get('department')=="B.Sc Physics" %}selected{% endif %}>
+B.Sc Physics
+</option>
+
+<option value="B.Sc Chemistry"
+{% if form and form.get('department')=="B.Sc Chemistry" %}selected{% endif %}>
+B.Sc Chemistry
+</option>
+
+<option value="B.Sc Biotechnology"
+{% if form and form.get('department')=="B.Sc Biotechnology" %}selected{% endif %}>
+B.Sc Biotechnology
+</option>
+
+<option value="B.Sc Psychology"
+{% if form and form.get('department')=="B.Sc Psychology" %}selected{% endif %}>
+B.Sc Psychology
+</option>
+
+<option value="B.Sc Visual Communication"
+{% if form and form.get('department')=="B.Sc Visual Communication" %}selected{% endif %}>
+B.Sc Visual Communication
+</option>
+
+</select>
+
+</div>
+
+<!-- Year -->
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">Year of Study</label>
+
+    <select class="form-select" name="year" required>
+
+<option value="">Select Year</option>
+
+<option value="1"
+{% if form and form.get('year')=="1" %}selected{% endif %}>
+First Year
+</option>
+
+<option value="2"
+{% if form and form.get('year')=="2" %}selected{% endif %}>
+Second Year
+</option>
+
+<option value="3"
+{% if form and form.get('year')=="3" %}selected{% endif %}>
+Third Year
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">CGPA</label>
+
+    <input
+    type="number"
+    class="form-control"
+    id="cgpa"
+    name="cgpa"
+    value="{{ form.get('cgpa', '') if form else '' }}"
+    min="0"
+    max="10"
+    step="0.01"
+    placeholder="Enter CGPA"
+    required>
+
+    <small id="cgpaError" class="text-danger"></small>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">Password</label>
+
+    <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Create Password"
+        required>
+
+    <small id="passwordError" class="text-danger"></small>
+
+    <small id="passwordStrength" class="fw-bold"></small>
+
+</div>
+
+
+<div class="col-md-12 mb-3">
+
+    <label class="form-label">Confirm Password</label>
+
+    <input
+        type="password"
+        class="form-control"
+        id="confirm_password"
+        name="confirm_password"
+        placeholder="Confirm Password"
+        required>
+
+    <small id="confirmPasswordError" class="text-danger"></small>
+
+</div>
+
+
+<div class="col-md-12">
+
+<button class="btn btn-primary w-100">
+
+<i class="bi bi-person-check-fill"></i>
+
+Register
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+<hr>
+
+<p class="text-center">
+
+Already have an account?
+
+<a href="/login">
+
+Login
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+{% endblock %}

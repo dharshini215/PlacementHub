@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual Environment
+venv/
+
+# Database
+instance/
+database/
+
+# VS Code
+.vscode/
+
+# Environment Variables
+.env
+
+# Docker
+*.tar
+
+# Logs
+*.log
+
+# Uploaded Files
+static/resumes/
+static/company_logos/

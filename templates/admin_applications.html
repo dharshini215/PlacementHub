@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Applications
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<h2 class="fw-bold mb-4">
+
+<i class="bi bi-file-earmark-check-fill"></i>
+
+Student Applications
+
+</h2>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<table class="table table-hover">
+
+<thead class="table-primary">
+
+<tr>
+
+<th>Student</th>
+
+<th>Company</th>
+
+<th>Role</th>
+
+<th>Resume</th>
+<th>Status</th>
+<th>Applied On</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for application in applications %}
+
+<tr>
+
+<td>{{ application.student.full_name }}</td>
+
+<td>{{ application.company.company_name }}</td>
+
+<td>{{ application.company.role }}</td>
+<td>
+
+{% if application.student.resume %}
+
+<a href="{{ url_for('static', filename='resumes/' + application.student.resume) }}"
+   target="_blank"
+   class="btn btn-primary btn-sm table-action-btn">
+
+    <i class="bi bi-file-earmark-pdf-fill"></i>
+
+    View Resume
+
+</a>
+
+{% else %}
+
+<span class="badge bg-danger">
+
+No Resume
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+{% if application.status == "Applied" %}
+
+<span class="badge bg-primary">
+
+{{ application.status }}
+
+</span>
+
+{% elif application.status == "Shortlisted" %}
+
+<span class="badge bg-warning text-dark">
+
+{{ application.status }}
+
+</span>
+
+{% elif application.status == "Selected" %}
+
+<span class="badge bg-success">
+
+{{ application.status }}
+
+</span>
+
+{% else %}
+
+<span class="badge bg-danger">
+
+{{ application.status }}
+
+</span>
+
+{% endif %}
+</td>
+
+<td>
+
+{{ application.applied_on.strftime("%d-%m-%Y") }}
+
+</td>
+
+<td>
+
+<a href="/admin/application/{{ application.id }}"
+   class="btn btn-warning btn-sm table-action-btn">
+
+    <i class="bi bi-pencil-square"></i>
+
+    Update
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

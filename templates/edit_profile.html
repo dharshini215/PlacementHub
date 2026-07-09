@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-4">
+
+        <h2 class="text-primary mb-4">
+            Edit Profile
+        </h2>
+
+        <form method="POST">
+
+            <div class="mb-3">
+
+    <label class="form-label">Full Name</label>
+
+    <input
+        type="text"
+        class="form-control"
+        id="full_name"
+        name="full_name"
+        value="{{ student.full_name }}"
+        required>
+
+    <small id="nameError" class="text-danger"></small>
+
+</div>
+
+            <div class="mb-3">
+
+    <label class="form-label">Phone Number</label>
+
+    <input
+        type="tel"
+        class="form-control"
+        id="phone"
+        name="phone"
+        value="{{ student.phone }}"
+        maxlength="10"
+        required>
+
+    <small id="phoneError" class="text-danger"></small>
+
+</div>
+
+            <div class="mb-3">
+
+<label class="form-label">Department</label>
+
+<select class="form-select" name="department" required>
+
+<option value="BCA" {% if student.department=="BCA" %}selected{% endif %}>BCA</option>
+
+<option value="B.Sc Computer Science with Cognitive Systems"{% if student.department=="B.Sc Computer Science with Cognitive Systems" %}selected{% endif %}>B.Sc Computer Science with Cognitive Systems</option>
+
+<option value="B.Sc Computer Science" {% if student.department=="B.Sc Computer Science" %}selected{% endif %}>B.Sc Computer Science</option>
+
+<option value="B.Sc Information Technology" {% if student.department=="B.Sc Information Technology" %}selected{% endif %}>B.Sc Information Technology</option>
+
+<option value="B.Sc Artificial Intelligence & Machine Learning" {% if student.department=="B.Sc Artificial Intelligence & Machine Learning" %}selected{% endif %}>B.Sc Artificial Intelligence & Machine Learning</option>
+
+<option value="B.Sc Data Science" {% if student.department=="B.Sc Data Science" %}selected{% endif %}>B.Sc Data Science</option>
+
+<option value="B.Com" {% if student.department=="B.Com" %}selected{% endif %}>B.Com</option>
+
+<option value="B.Com Computer Applications" {% if student.department=="B.Com Computer Applications" %}selected{% endif %}>B.Com Computer Applications</option>
+
+<option value="B.Com Professional Accounting" {% if student.department=="B.Com Professional Accounting" %}selected{% endif %}>B.Com Professional Accounting</option>
+
+<option value="B.Com Banking & Insurance" {% if student.department=="B.Com Banking & Insurance" %}selected{% endif %}>B.Com Banking & Insurance</option>
+
+<option value="BBA" {% if student.department=="BBA" %}selected{% endif %}>BBA</option>
+
+<option value="BBA Computer Applications" {% if student.department=="BBA Computer Applications" %}selected{% endif %}>BBA Computer Applications</option>
+
+<option value="BA English" {% if student.department=="BA English" %}selected{% endif %}>BA English</option>
+
+<option value="BA Tamil" {% if student.department=="BA Tamil" %}selected{% endif %}>BA Tamil</option>
+
+<option value="BA Economics" {% if student.department=="BA Economics" %}selected{% endif %}>BA Economics</option>
+
+<option value="B.Sc Mathematics" {% if student.department=="B.Sc Mathematics" %}selected{% endif %}>B.Sc Mathematics</option>
+
+<option value="B.Sc Physics" {% if student.department=="B.Sc Physics" %}selected{% endif %}>B.Sc Physics</option>
+
+<option value="B.Sc Chemistry" {% if student.department=="B.Sc Chemistry" %}selected{% endif %}>B.Sc Chemistry</option>
+
+<option value="B.Sc Biotechnology" {% if student.department=="B.Sc Biotechnology" %}selected{% endif %}>B.Sc Biotechnology</option>
+
+<option value="B.Sc Psychology" {% if student.department=="B.Sc Psychology" %}selected{% endif %}>B.Sc Psychology</option>
+
+<option value="B.Sc Visual Communication" {% if student.department=="B.Sc Visual Communication" %}selected{% endif %}>B.Sc Visual Communication</option>
+
+</select>
+
+</div>
+
+            <div class="mb-3">
+
+<label class="form-label">Year of Study</label>
+
+<select class="form-select" name="year" required>
+
+<option value="1" {% if student.year=="1" %}selected{% endif %}>
+First Year
+</option>
+
+<option value="2" {% if student.year=="2" %}selected{% endif %}>
+Second Year
+</option>
+
+<option value="3" {% if student.year=="3" %}selected{% endif %}>
+Third Year
+</option>
+
+</select>
+
+</div>
+
+            <div class="mb-3">
+
+<label class="form-label">CGPA</label>
+
+<input
+type="number"
+class="form-control"
+id="cgpa"
+name="cgpa"
+value="{{ student.cgpa }}"
+min="0"
+max="10"
+step="0.01"
+required>
+
+<small id="cgpaError" class="text-danger"></small>
+
+</div>
+
+            <button class="btn btn-success">
+                Save Changes
+            </button>
+
+            <a href="/dashboard" class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/edit_profile_validation.js') }}"></script>
+
+{% endblock %}

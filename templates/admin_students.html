@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Students
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">
+
+        Student Management
+
+    </h2>
+    <div class="card shadow-sm border-0 mb-4">
+
+    <div class="card-body">
+
+        <form method="GET">
+
+    <div class="row g-3">
+
+        <div class="col-md-4">
+
+            <input
+                type="text"
+                class="form-control"
+                name="search"
+                placeholder="Search Name / Register Number"
+                value="{{ request.args.get('search', '') }}">
+
+        </div>
+
+        <div class="col-md-3">
+
+            <select class="form-select" name="department">
+
+                <option value="">All Departments</option>
+
+                <option value="BCA"
+{% if request.args.get('department') == 'BCA' %}
+selected
+{% endif %}>
+BCA
+</option>
+<option value="BBA"
+{% if request.args.get('department') == 'BBA' %}
+selected
+{% endif %}>
+BBA
+</option>
+<option value="B.Sc Computer Science"
+{% if request.args.get('department') == 'B.Sc Computer Science' %}
+selected
+{% endif %}>
+B.Sc Computer Science
+</option>
+<option value="B.Sc Computer Science with Cognitive Systems"
+{% if request.args.get('department') == 'B.Sc Computer Science with Cognitive Systems' %}
+selected
+{% endif %}>
+B.Sc Computer Science with Cognitive Systems
+</option>
+<option value="B.Sc Information Technology"
+{% if request.args.get('department') == 'B.Sc Information Technology' %}
+selected
+{% endif %}>
+B.Sc Information Technology
+</option>
+<option value="B.Com"
+{% if request.args.get('department') == 'B.Com' %}
+selected
+{% endif %}>
+B.Com
+</option>
+<option value="BA Tamil"
+{% if request.args.get('department') == 'BA Tamil' %}
+selected
+{% endif %}>
+BA Tamil
+</option>
+<option value="BA English"
+{% if request.args.get('department') == 'BA English' %}
+selected
+{% endif %}>
+BA English
+</option>
+
+
+            </select>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <select class="form-select" name="year">
+
+                <option value="All years"
+{% if request.args.get('year') == 'All Years' %}
+selected
+{% endif %}>
+ALL Years
+</option>
+
+               <option value="1"
+{% if request.args.get('year') == '1' %}
+selected
+{% endif %}>
+First Year
+</option>
+
+                <option value="2"
+{% if request.args.get('year') == '2' %}
+selected
+{% endif %}>
+Second Year
+</option>
+
+               <option value="3"
+{% if request.args.get('year') == '3' %}
+selected
+{% endif %}>
+Third Year
+</option>
+
+            </select>
+
+        </div>
+
+        <div class="col-md-1">
+
+            <button class="btn btn-primary w-100">
+
+                <i class="bi bi-search"></i>
+
+            </button>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <a href="/admin/students" class="btn btn-secondary w-100">
+
+                Reset
+
+            </a>
+
+        </div>
+
+    </div>
+
+</form>
+
+    </div>
+
+</div>
+
+
+
+    <table class="table table-bordered table-hover align-middle">
+
+        <thead class="table-primary">
+
+            <tr>
+
+                <th>#</th>
+
+                <th>Name</th>
+
+                <th>Register No</th>
+
+                <th>Department</th>
+
+                <th>Year</th>
+
+                <th>CGPA</th>
+
+                <th>Resume</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for student in students %}
+
+        <tr>
+
+            <td>{{ loop.index }}</td>
+
+            <td>{{ student.full_name }}</td>
+
+            <td>{{ student.register_number }}</td>
+
+            <td>{{ student.department }}</td>
+
+            <td>{{ student.year }}</td>
+
+            <td>{{ student.cgpa }}</td>
+
+            <td>
+
+                {% if student.resume %}
+
+                    <span class="badge bg-success">
+
+                        Uploaded
+
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-danger">
+
+                        Not Uploaded
+
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+           <td>
+
+<a
+href="/admin/student/{{ student.id }}"
+class="btn btn-info btn-sm">
+
+<i class="bi bi-eye"></i>
+
+</a>
+
+<a
+href="/admin/student/edit/{{ student.id }}"
+class="btn btn-sm btn-warning">
+
+<i class="bi bi-pencil"></i>
+
+</a>
+
+{% if student.resume %}
+
+<a
+href="{{ url_for('static', filename='resumes/' + student.resume) }}"
+target="_blank"
+class="btn btn-sm btn-success">
+
+<i class="bi bi-file-earmark-pdf"></i>
+
+</a>
+
+{% endif %}
+
+<a
+href="/admin/student/delete/{{ student.id }}"
+class="btn btn-sm btn-danger"
+onclick="return confirm('Delete this student?')">
+
+<i class="bi bi-trash"></i>
+
+</a>
+
+</td>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+    <div class="mt-3">
+
+    <strong>
+
+        Total Students :
+
+        {{ students|length }}
+
+    </strong>
+
+</div>
+
+</div>
+
+{% endblock %}

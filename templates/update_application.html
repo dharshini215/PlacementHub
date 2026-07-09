@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+Update Application
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<div class="col-lg-6 mx-auto">
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<h3 class="mb-4">
+
+Update Application Status
+
+</h3>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Student
+
+</label>
+
+<input class="form-control"
+value="{{ application.student.full_name }}"
+readonly>
+
+</div>
+
+<div class="mb-3">
+
+<label>Status</label>
+
+<select
+class="form-select"
+name="status">
+
+<option>Applied</option>
+
+<option>Shortlisted</option>
+
+<option>Selected</option>
+
+<option>Rejected</option>
+
+</select>
+
+</div>
+
+<button
+class="btn btn-success">
+
+Save Changes
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

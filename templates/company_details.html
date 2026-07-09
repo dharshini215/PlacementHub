@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ company.company_name }}
+{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+
+{% if company.logo %}
+
+<img
+src="{{ url_for('static', filename='company_logos/' + company.logo) }}"
+style="height:120px; object-fit:contain;">
+
+{% endif %}
+
+</div>
+
+<div class="container mt-4">
+
+    <div class="card shadow border-0">
+
+        <div class="card-body p-4">
+
+            <h2 class="text-primary">
+
+                <i class="bi bi-building"></i>
+
+                {{ company.company_name }}
+
+            </h2>
+
+            <hr>
+
+            <p>
+                <strong>Role:</strong>
+                {{ company.role }}
+            </p>
+
+            <p>
+                <strong>Package:</strong>
+                {{ company.package }}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                {{ company.location }}
+            </p>
+
+            <p>
+                <strong>Eligible Departments:</strong>
+                {{ company.eligible_department }}
+            </p>
+
+            <p>
+                <strong>Minimum CGPA:</strong>
+                {{ company.minimum_cgpa }}
+            </p>
+
+            <p>
+                <strong>Last Date:</strong>
+                {{ company.last_date }}
+            </p>
+
+            <hr>
+
+            <div class="d-flex gap-3">
+
+                <a href="/placement-drives"
+                   class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </a>
+
+                <a href="/apply/{{ company.id }}"
+                   class="btn btn-success">
+
+                    <i class="bi bi-send-check-fill"></i>
+
+                    Apply Now
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

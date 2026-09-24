@@ -704,6 +704,66 @@ def view_student(id):
 
     )
 
+@app.route("/admin/student/edit/<int:id>", methods=["GET", "POST"])
+def edit_student(id):
+
+    if "admin_id" not in session:
+        return redirect(url_for("admin_login"))
+
+    student = Student.query.get_or_404(id)
+
+    if request.method == "POST":
+
+        student.full_name = request.form["full_name"].strip()
+        student.register_number = request.form["register_number"].strip().upper()
+        student.email = request.form["email"].strip().lower()
+        student.phone = request.form["phone"].strip()
+        student.department = request.form["department"]
+        student.year = request.form["year"]
+        student.cgpa = request.form["cgpa"]
+
+        db.session.commit()
+
+        flash(
+            "Student details updated successfully!",
+            "success"
+        )
+
+        return redirect(url_for("admin_students"))
+
+    return render_template(
+        "admin_edit_student.html",
+        student=student
+    )
+
+
+
+# -----------------------------------------
+# Delete Student
+# -----------------------------------------
+
+@app.route("/admin/student/delete/<int:id>")
+def delete_student(id):
+
+    if "admin_id" not in session:
+        return redirect(url_for("admin_login"))
+
+    student = Student.query.get_or_404(id)
+
+    # Delete applications belonging to this student
+    Application.query.filter_by(
+        student_id=student.id
+    ).delete(synchronize_session=False)
+
+    # Delete the student
+    db.session.delete(student)
+
+    db.session.commit()
+
+    flash("Student and related applications deleted successfully!", "success")
+
+    return redirect(url_for("admin_students"))
+
 # -----------------------------------------
 #  admin appilation
 # -----------------------------------------
@@ -1113,10 +1173,17 @@ def delete_company(id):
 
     company = Company.query.get_or_404(id)
 
+    # Delete applications belonging to this company
+    Application.query.filter_by(
+        company_id=company.id
+    ).delete(synchronize_session=False)
+
+    # Delete the company
     db.session.delete(company)
+
     db.session.commit()
 
-    flash("Company deleted successfully!", "success")
+    flash("Company and related applications deleted successfully!", "success")
 
     return redirect(url_for("admin_companies"))
 

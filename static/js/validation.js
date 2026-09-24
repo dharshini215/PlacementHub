@@ -1,5 +1,3 @@
-
-
 // ==============================
 // Full Name Validation
 // ==============================
@@ -7,309 +5,336 @@
 const fullName = document.getElementById("full_name");
 const nameError = document.getElementById("nameError");
 
-fullName.addEventListener("input", function () {
+if (fullName && nameError) {
 
-    // Remove multiple spaces
-    this.value = this.value.replace(/\s+/g, " ");
+    fullName.addEventListener("input", function () {
 
-    if (this.value.length === 0) {
+        this.value = this.value.replace(/\s+/g, " ");
 
-        nameError.innerHTML = "";
+        if (this.value.length === 0) {
 
-        fullName.classList.remove("is-valid");
-        fullName.classList.remove("is-invalid");
+            nameError.innerHTML = "";
+            fullName.classList.remove("is-invalid");
 
-    }
+        }
+        else if (!/^[A-Za-z ]+$/.test(this.value)) {
 
-    else if (!/^[A-Za-z ]+$/.test(this.value)) {
+            nameError.innerHTML =
+                "Only letters and spaces are allowed.";
 
-        nameError.innerHTML =
-            "Only letters and spaces are allowed.";
+            fullName.classList.add("is-invalid");
 
-        fullName.classList.add("is-invalid");
-        fullName.classList.remove("is-valid");
+        }
+        else if (this.value.trim().length < 3) {
 
-    }
+            nameError.innerHTML =
+                "Name must contain at least 3 characters.";
 
-    else if (this.value.trim().length < 3) {
+            fullName.classList.add("is-invalid");
 
-        nameError.innerHTML =
-            "Name must contain at least 3 characters.";
+        }
+        else {
 
-        fullName.classList.add("is-invalid");
-        fullName.classList.remove("is-valid");
+            nameError.innerHTML = "";
+            fullName.classList.remove("is-invalid");
 
-    }
+        }
 
-    else {
+    });
 
-        nameError.innerHTML = "";
+}
 
-        
-        fullName.classList.remove("is-invalid");
 
-    }
-
-});
-
-// ========================================
+// ==============================
 // Register Number Validation
-// ========================================
+// ==============================
 
-const registerNumber = document.getElementById("register_number");
-const registerError = document.getElementById("registerError");
+const registerNumber =
+    document.getElementById("register_number");
 
-registerNumber.addEventListener("input", function () {
+const registerError =
+    document.getElementById("registerError");
 
-    // Convert to uppercase automatically
-    this.value = this.value.toUpperCase().trim();
+if (registerNumber && registerError) {
 
-    // Accept:
-    // 251AT014
-    // 251IT173
-    // 24UGCCA00128
-    // 24UGCPA00009
-    const pattern = /^(\d{3}[A-Z]{2}\d{3}|\d{2}UG[A-Z]{3}\d{5})$/;
+    registerNumber.addEventListener("input", function () {
 
-    if (this.value.length === 0) {
+        this.value =
+            this.value.toUpperCase().replace(/\s/g, "");
 
-        registerError.innerHTML = "";
+        const pattern =
+            /^(\d{3}[A-Z]{2}\d{3}|\d{2}UG[A-Z]{3}\d{5})$/;
 
-        registerNumber.classList.remove("is-valid");
-        registerNumber.classList.remove("is-invalid");
+        if (this.value.length === 0) {
 
-    }
+            registerError.innerHTML = "";
+            registerNumber.classList.remove("is-invalid");
 
-    else if (!pattern.test(this.value)) {
+        }
+        else if (!pattern.test(this.value)) {
 
-        registerError.innerHTML =
-            "Invalid Register Number format.";
+            registerError.innerHTML =
+                "Invalid Register Number format.";
 
-        registerNumber.classList.add("is-invalid");
-        registerNumber.classList.remove("is-valid");
+            registerNumber.classList.add("is-invalid");
 
-    }
+        }
+        else {
 
-    else {
+            registerError.innerHTML = "";
+            registerNumber.classList.remove("is-invalid");
 
-        registerError.innerHTML = "";
+        }
 
-        registerNumber.classList.remove("is-invalid");
+    });
 
-    }
-
-});
+}
 
 
-
-// ==========================================
+// ==============================
 // Email Validation
-// ==========================================
+// ==============================
 
 const email = document.getElementById("email");
 const emailError = document.getElementById("emailError");
 
-email.addEventListener("input", function () {
+if (email && emailError) {
 
-    // Convert to lowercase and remove spaces
-    this.value = this.value.toLowerCase().replace(/\s/g, "");
+    email.addEventListener("input", function () {
 
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        this.value =
+            this.value.toLowerCase().replace(/\s/g, "");
 
-    if (this.value.length === 0) {
+        const pattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        emailError.innerHTML = "";
-        email.classList.remove("is-invalid");
+        if (this.value.length === 0) {
 
-    }
+            emailError.innerHTML = "";
+            email.classList.remove("is-invalid");
 
-    else if (!pattern.test(this.value)) {
+        }
+        else if (!pattern.test(this.value)) {
 
-        emailError.innerHTML = "Enter a valid Email Address.";
-        email.classList.add("is-invalid");
+            emailError.innerHTML =
+                "Enter a valid Email Address.";
 
-    }
+            email.classList.add("is-invalid");
 
-    else {
+        }
+        else {
 
-        emailError.innerHTML = "";
-        email.classList.remove("is-invalid");
+            emailError.innerHTML = "";
+            email.classList.remove("is-invalid");
 
-    }
+        }
 
-});
+    });
+
+}
 
 
-
+// ==============================
 // Phone Number Validation
+// ==============================
 
 const phone = document.getElementById("phone");
-
 const phoneError = document.getElementById("phoneError");
 
-phone.addEventListener("input", function () {
+if (phone && phoneError) {
 
-    // Remove everything except digits
-    this.value = this.value.replace(/\D/g, "");
+    phone.addEventListener("input", function () {
 
-    // Maximum 10 digits
-    this.value = this.value.substring(0, 10);
+        // Allow only numbers
+        this.value = this.value.replace(/\D/g, "");
 
-    if (this.value.length === 0) {
+        // Maximum 10 digits
+        this.value = this.value.substring(0, 10);
 
-        phoneError.innerHTML = "";
+        if (this.value.length === 0) {
 
-    }
-    else if (!/^[6-9]\d{9}$/.test(this.value)) {
+            phoneError.innerHTML = "";
+            phone.classList.remove("is-invalid");
 
-        phoneError.innerHTML =
-            "Enter a valid 10-digit Indian mobile number.";
+        }
+        else if (!/^[6-9]\d{9}$/.test(this.value)) {
 
-    }
-    else {
+            phoneError.innerHTML =
+                "Enter a valid 10-digit Indian mobile number.";
 
-        phoneError.innerHTML = "";
+            phone.classList.add("is-invalid");
 
-    }
+        }
+        else {
 
-});
+            phoneError.innerHTML = "";
+            phone.classList.remove("is-invalid");
+
+        }
+
+    });
+
+}
 
 
-// ==========================================
+// ==============================
 // CGPA Validation
-// ==========================================
+// ==============================
 
 const cgpa = document.getElementById("cgpa");
 const cgpaError = document.getElementById("cgpaError");
 
-cgpa.addEventListener("input", function () {
+if (cgpa && cgpaError) {
 
-    const value = parseFloat(this.value);
+    cgpa.addEventListener("input", function () {
 
-    if (this.value === "") {
+        const value = parseFloat(this.value);
 
-        cgpaError.innerHTML = "";
-        cgpa.classList.remove("is-invalid");
+        if (this.value === "") {
 
-    }
+            cgpaError.innerHTML = "";
+            cgpa.classList.remove("is-invalid");
 
-    else if (isNaN(value)) {
+        }
+        else if (isNaN(value)) {
 
-        cgpaError.innerHTML = "Enter a valid CGPA.";
-        cgpa.classList.add("is-invalid");
+            cgpaError.innerHTML =
+                "Enter a valid CGPA.";
 
-    }
+            cgpa.classList.add("is-invalid");
 
-    else if (value < 0 || value > 10) {
+        }
+        else if (value < 0 || value > 10) {
 
-        cgpaError.innerHTML = "CGPA must be between 0 and 10.";
-        cgpa.classList.add("is-invalid");
+            cgpaError.innerHTML =
+                "CGPA must be between 0 and 10.";
 
-    }
+            cgpa.classList.add("is-invalid");
 
-    else {
+        }
+        else {
 
-        cgpaError.innerHTML = "";
-        cgpa.classList.remove("is-invalid");
+            cgpaError.innerHTML = "";
+            cgpa.classList.remove("is-invalid");
 
-    }
+        }
 
-});
+    });
 
-// ==========================================
+}
+
+
+// ==============================
 // Password Validation
-// ==========================================
+// Only runs on Register page
+// ==============================
 
-const password = document.getElementById("password");
-const passwordError = document.getElementById("passwordError");
-const passwordStrength = document.getElementById("passwordStrength");
+const password =
+    document.getElementById("password");
 
-password.addEventListener("input", function () {
+const passwordError =
+    document.getElementById("passwordError");
 
-    const value = this.value;
+const passwordStrength =
+    document.getElementById("passwordStrength");
 
-    password.classList.remove("is-invalid");
+if (password && passwordError && passwordStrength) {
 
-    passwordError.innerHTML = "";
-    passwordStrength.innerHTML = "";
+    password.addEventListener("input", function () {
 
-    if (value.length === 0) {
+        const value = this.value;
 
-        return;
+        password.classList.remove("is-invalid");
 
-    }
+        passwordError.innerHTML = "";
+        passwordStrength.innerHTML = "";
 
-    if (value.length < 8) {
+        if (value.length === 0) {
+            return;
+        }
 
-        passwordError.innerHTML =
-            "Password must contain at least 8 characters.";
+        if (value.length < 8) {
 
-        password.classList.add("is-invalid");
+            passwordError.innerHTML =
+                "Password must contain at least 8 characters.";
 
-        return;
+            password.classList.add("is-invalid");
 
-    }
+            return;
 
-    let score = 0;
+        }
 
-    if (/[A-Z]/.test(value)) score++;
-    if (/[a-z]/.test(value)) score++;
-    if (/[0-9]/.test(value)) score++;
-    if (/[^A-Za-z0-9]/.test(value)) score++;
+        let score = 0;
 
-    if (score <= 2) {
+        if (/[A-Z]/.test(value)) score++;
+        if (/[a-z]/.test(value)) score++;
+        if (/[0-9]/.test(value)) score++;
+        if (/[^A-Za-z0-9]/.test(value)) score++;
 
-        passwordStrength.innerHTML =
-            "<span class='text-danger'>Weak Password</span>";
+        if (score <= 2) {
 
-    }
+            passwordStrength.innerHTML =
+                "<span class='text-danger'>Weak Password</span>";
 
-    else if (score === 3) {
+        }
+        else if (score === 3) {
 
-        passwordStrength.innerHTML =
-            "<span class='text-warning'>Medium Password</span>";
+            passwordStrength.innerHTML =
+                "<span class='text-warning'>Medium Password</span>";
 
-    }
+        }
+        else {
 
-    else {
+            passwordStrength.innerHTML =
+                "<span class='text-success'>Strong Password</span>";
 
-        passwordStrength.innerHTML =
-            "<span class='text-success'>Strong Password</span>";
+        }
 
-    }
+    });
 
-});
+}
 
-// ==========================================
+
+// ==============================
 // Confirm Password Validation
-// ==========================================
+// Only runs on Register page
+// ==============================
 
-const confirmPassword = document.getElementById("confirm_password");
-const confirmPasswordError = document.getElementById("confirmPasswordError");
+const confirmPassword =
+    document.getElementById("confirm_password");
 
-confirmPassword.addEventListener("input", function () {
+const confirmPasswordError =
+    document.getElementById("confirmPasswordError");
 
-    if (this.value.length === 0) {
+if (
+    confirmPassword &&
+    confirmPasswordError &&
+    password
+) {
 
-        confirmPasswordError.innerHTML = "";
-        confirmPassword.classList.remove("is-invalid");
+    confirmPassword.addEventListener("input", function () {
 
-    }
+        if (this.value.length === 0) {
 
-    else if (this.value !== password.value) {
+            confirmPasswordError.innerHTML = "";
+            confirmPassword.classList.remove("is-invalid");
 
-        confirmPasswordError.innerHTML =
-            "Passwords do not match.";
+        }
+        else if (this.value !== password.value) {
 
-        confirmPassword.classList.add("is-invalid");
+            confirmPasswordError.innerHTML =
+                "Passwords do not match.";
 
-    }
+            confirmPassword.classList.add("is-invalid");
 
-    else {
+        }
+        else {
 
-        confirmPasswordError.innerHTML = "";
-        confirmPassword.classList.remove("is-invalid");
+            confirmPasswordError.innerHTML = "";
+            confirmPassword.classList.remove("is-invalid");
 
-    }
+        }
 
-});
+    });
+
+}

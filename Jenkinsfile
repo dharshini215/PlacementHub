@@ -13,14 +13,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker compose build'
+                bat 'docker-compose build'
             }
         }
 
         stage('Deploy Container') {
             steps {
-                bat 'docker compose down'
-                bat 'docker compose up -d'
+                bat 'docker-compose down'
+                bat 'docker-compose up -d'
             }
         }
 
